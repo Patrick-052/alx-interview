@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Pascal's triangle of n"""
+"""Pascal's triangle of n size"""
 
 
 def pascal_triangle(n):
