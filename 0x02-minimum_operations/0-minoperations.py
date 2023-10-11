@@ -34,4 +34,6 @@ def minOperations(n):
         while n % i == 0:
             operations += i
             n = n / i
+    if n > 1:
+        operations += n
     return operations
