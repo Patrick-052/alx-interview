@@ -1,22 +1,26 @@
 #!/usr/bin/python3
 """ UTF-8 Validation """
 
-def validUTF8(data):
-    """ determines if a given data set represents a valid UTF-8 encoding """
-    n_bytes = 0
-    for num in data:
-        byte = num.to_bytes(1, 'big')
-        bits = format(byte[0], '#010b')[-8:]
-        if n_bytes == 0:
-            if bits[0] == '0':
+
+def validUTF8(data) -> bool:
+    """
+    Returns True if data is a valid UTF-8 encoding, else return False
+    :param data:
+    :return:
+    """
+    num_bytes = 0
+    for byte in data:
+        mask = 1 << 7
+        if not num_bytes:
+            while byte & mask:
+                num_bytes += 1
+                mask >>= 1
+            if not num_bytes:
                 continue
-            while bits[0] == '1':
-                n_bytes += 1
-                bits = bits[1:]
-            if n_bytes == 1 or n_bytes > 4:
+            if num_bytes == 1 or num_bytes > 4:
                 return False
         else:
-            if not (bits[0] == '1' and bits[1] == '0'):
+            if byte >> 6 != 0b10:
                 return False
-        n_bytes -= 1
-    return n_bytes == 0
+        num_bytes -= 1
+    return num_bytes == 0
