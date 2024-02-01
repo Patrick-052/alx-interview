@@ -10,7 +10,6 @@ def validUTF8(data) -> bool:
     """
     last_valid_int = 255
     for i in data:
-        enc = bin(i)[2:].zfill(8)
-        if len(enc) > len(bin(last_valid_int)[2:].zfill(8)):
+        if i > last_valid_int:
             return False
     return True
