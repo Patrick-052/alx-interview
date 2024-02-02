@@ -7,8 +7,7 @@ def validUTF8(data) -> bool:
     encoded = []
     for i in data:
         if 0 <= i <= 255:
-            enc = i.to_bytes((i.bit_length() + 7) // 8, 'big') or b'\0'
-            enc_bin = ''.join(f'{b:08b}' for b in enc)
+            enc_bin = bin(i)[2:].zfill(8)
             encoded.append(enc_bin)
         else:
             return False
