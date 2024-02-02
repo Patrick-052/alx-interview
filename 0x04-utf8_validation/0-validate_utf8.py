@@ -6,11 +6,8 @@ def validUTF8(data) -> bool:
     """ Returns True if data is a valid UTF-8 encoding, else return False """
     encoded = []
     for i in data:
-        if 0 <= i <= 255:
-            enc_bin = bin(i)[2:].zfill(8)
-            encoded.append(enc_bin)
-        else:
-            return False
+        enc_bin = bin(i)[2:].zfill(8)
+        encoded.append(enc_bin)
 
     i = 0
     while i < len(encoded):
