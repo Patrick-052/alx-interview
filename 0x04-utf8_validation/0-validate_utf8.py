@@ -7,7 +7,7 @@ def validUTF8(data) -> bool:
     encoded = []
     for i in data:
         enc_bin = bin(i)[2:].zfill(8)
-        encoded.append(enc_bin)
+        encoded.append(enc_bin[-8:])
 
     i = 0
     while i < len(encoded):
